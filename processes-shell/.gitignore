@@ -1,0 +1,3 @@
+*.o
+wish
+tests-out/
