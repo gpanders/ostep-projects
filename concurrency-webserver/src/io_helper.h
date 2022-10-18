@@ -40,6 +40,8 @@ typedef struct sockaddr sockaddr_t;
     ({ int rc = setenv(name, value, overwrite); assert(rc == 0); rc; })
 #define chdir_or_die(path) \
     assert(chdir(path) == 0); 
+#define chroot_or_die(path) \
+    assert(chroot(path) == 0);
 #define open_or_die(pathname, flags, mode) \
     ({ int rc = open(pathname, flags, mode); assert(rc >= 0); rc; })
 #define read_or_die(fd, buf, count) \
@@ -78,6 +80,8 @@ typedef struct sockaddr sockaddr_t;
     ({ struct hostent *p = gethostbyname(name); assert(p != NULL); p; })
 #define gethostbyaddr_or_die(addr, len, type) \
     ({ struct hostent *p = gethostbyaddr(addr, len, type); assert(p != NULL); p; })
+#define malloc_or_die(size) \
+    ({ void *p = malloc(size); assert(p != NULL); p; })
 
 // client/server helper functions 
 ssize_t readline(int fd, void *buf, size_t maxlen);

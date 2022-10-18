@@ -8,8 +8,10 @@ ssize_t readline(int fd, void *buf, size_t maxlen) {
 	int rc;
         if ((rc = read_or_die(fd, &c, 1)) == 1) {
             *bufp++ = c;
-            if (c == '\n')
+            if (c == '\n') {
+                n++;
                 break;
+            }
         } else if (rc == 0) {
             if (n == 1)
                 return 0; /* EOF, no data read */
