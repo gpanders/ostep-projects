@@ -4,10 +4,10 @@ infile=$1
 testnames=$2
 
 gawk -vtestnames=$testnames '
-($1 == "_mkdir\\") {
+($1 == "\$U/_mkdir\\") {
   n = split(testnames, x, ",");
   for (i = 1; i <= n; i++) {
-    printf("\t_%s\\\n", x[i]);
+    printf("\t\$U/_%s\\\n", x[i]);
   }
 } 
 
